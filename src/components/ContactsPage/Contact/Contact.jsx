@@ -1,7 +1,7 @@
 import { DeleteButton } from './Contact.styled';
 import { CgClose } from 'react-icons/cg';
 import PropTypes from 'prop-types';
-import { Spinner } from 'components/Spinner/Spinner';
+import { ContactsSpinner } from '../ContactsSpinner';
 
 export const Contact = ({
   name,
@@ -13,7 +13,7 @@ export const Contact = ({
     <>
       {name}: {number}
       {isDeleteContactLoading && id === deletedContactId ? (
-        <Spinner size={'37'} />
+        <ContactsSpinner size={'37'} />
       ) : (
         <DeleteButton
           onClick={() => deleteContact(id, name)}

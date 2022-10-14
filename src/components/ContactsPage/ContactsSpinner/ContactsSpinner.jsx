@@ -1,7 +1,7 @@
-import { SpinnerWrap } from './Spinner.styled';
+import { SpinnerWrap } from './ContactsSpinner.styled';
 import { RotatingLines } from 'react-loader-spinner';
 
-export const Spinner = ({ size }) => {
+export const ContactsSpinner = ({ size }) => {
   return (
     <SpinnerWrap>
       <RotatingLines

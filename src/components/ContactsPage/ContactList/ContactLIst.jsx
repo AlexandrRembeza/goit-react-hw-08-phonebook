@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Item } from './ContactList.styled';
-import { Contact } from 'components/Contact';
+import { Contact } from 'components/ContactsPage/Contact';
 
 export const ContactList = ({ contacts, ...props }) => {
   const reverseContacts = [...contacts].reverse();

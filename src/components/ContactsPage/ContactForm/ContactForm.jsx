@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { Label, Text, AddButton, Thumb, Form, Input } from './ContactForm.styled';
-import { FormError } from 'components/FormError';
-import { ErrorElem } from 'components/FormError/FormError.styled';
+import { FormError } from 'components/ContactsPage/FormError';
+import { ErrorElem } from 'components/ContactsPage/FormError/FormError.styled';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -85,10 +85,7 @@ export function ContactForm({ addContact, isLoading }) {
 }
 
 Formik.propTypes = {
-  initialValues: PropTypes.exact({
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }),
+  initialValues: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
