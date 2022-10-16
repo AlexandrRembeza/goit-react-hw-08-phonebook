@@ -3,6 +3,7 @@ import { UserName, UserLogo, LogOutBtn } from './UserMenu.styled';
 import { logOut } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { IoPersonSharp } from 'react-icons/io5';
+import PropTypes from 'prop-types';
 
 export function UserMenu({ name }) {
   const dispatch = useDispatch();
@@ -20,3 +21,7 @@ export function UserMenu({ name }) {
     </Box>
   );
 }
+
+UserMenu.propTypes = {
+  name: PropTypes.string.isRequired,
+};

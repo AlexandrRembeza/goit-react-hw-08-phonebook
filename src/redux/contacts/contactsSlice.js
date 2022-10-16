@@ -12,13 +12,14 @@ export const contactsApi = createApi({
       return headers;
     },
   }),
+  refetchOnMountOrArgChange: true,
   tagTypes: ['Contacts'],
-  endpoints: builder => ({
-    getContacts: builder.query({
+  endpoints: ({ query, mutation }) => ({
+    getContacts: query({
       query: () => `/contacts`,
       providesTags: ['Contacts'],
     }),
-    addContact: builder.mutation({
+    addContact: mutation({
       query: contact => ({
         url: `/contacts`,
         method: 'POST',
@@ -26,7 +27,7 @@ export const contactsApi = createApi({
       }),
       invalidatesTags: ['Contacts'],
     }),
-    deleteContact: builder.mutation({
+    deleteContact: mutation({
       query: id => ({
         url: `/contacts/${id}`,
         method: 'DELETE',

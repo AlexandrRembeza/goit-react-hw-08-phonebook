@@ -9,7 +9,7 @@ export const Form = styled(FormikForm)`
 
   background-color: rgb(220, 253, 220);
 
-  padding: 30px 20px;
+  padding: 25px 20px;
   margin: 0 auto;
   border: 3px solid rgb(18, 209, 18);
   border-radius: 10px;

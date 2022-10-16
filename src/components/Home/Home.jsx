@@ -1,6 +1,7 @@
 import { Box } from 'components/Box';
 import { Title } from './Home.styled';
 import { PhoneIcon } from './Home.styled';
+
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 

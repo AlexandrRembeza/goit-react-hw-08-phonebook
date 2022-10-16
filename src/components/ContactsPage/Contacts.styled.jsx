@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
 
-  padding-top: 40px;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 `;
 
 export const Phonebook = styled.div`

@@ -32,7 +32,7 @@ export function Contacts() {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const { data: contacts, isLoading } = useGetContactsQuery();
+  const { data: contacts, isLoading } = useGetContactsQuery({ refetchOnMountOrArgChange: true });
   const [addContact, { isLoading: addContactLoading }] = useAddContactMutation();
   const [deleteContact, { isLoading: deleteContactLoading }] = useDeleteContactMutation();
 
