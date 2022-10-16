@@ -5,7 +5,7 @@ import {
   FormTitle as RegisterTitle,
   Label as RegisterLabel,
   Text as RegisterText,
-  RegisterButton as Button,
+  RegisterBtn as Button,
 } from 'components/Register/Register.styled';
 
 export const FormTitle = styled(RegisterTitle)`

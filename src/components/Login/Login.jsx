@@ -1,18 +1,35 @@
 import { Label, Text, LoginBtn, Form, Input, FormTitle } from './Login.styled';
 import { Box } from 'components/Box';
+import { toastOptions } from 'utils/toastOptions';
+import { logIn } from 'redux/auth/authOperations';
 
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
 export function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialValues = {
     email: '',
     password: '',
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    resetForm();
-    // addContact(formValues);
+  const handleSubmit = async (values, { resetForm }) => {
+    const formValues = {
+      email: values.email.trim(),
+      password: values.password.trim(),
+    };
+    const { error } = await dispatch(logIn(formValues));
+    if (!error) {
+      resetForm();
+      toast.success(`You have successfully Log In`, toastOptions);
+      return navigate('/', { replace: true });
+    }
+    toast.error(`An error has occurred, please check the information you entered.`, toastOptions);
   };
 
   return (

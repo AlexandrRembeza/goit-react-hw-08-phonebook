@@ -1,13 +1,15 @@
-import { Box } from 'components/Box';
-import { StyledLink } from './AppBar.styled';
+import { StyledLink, AppBarWrap } from './AppBar.styled';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
 export function AppBar() {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <Box>
+    <AppBarWrap>
       <StyledLink to="/" end>
         Home
       </StyledLink>
-      <StyledLink to="/contacts">My Contacts</StyledLink>
-    </Box>
+      {isLoggedIn && <StyledLink to="/contacts">My Contacts</StyledLink>}
+    </AppBarWrap>
   );
 }

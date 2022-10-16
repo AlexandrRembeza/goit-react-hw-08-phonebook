@@ -7,7 +7,6 @@ export const UserName = styled.p`
   padding: 5px 10px;
   color: rgb(16, 16, 144);
   margin: 0;
-  margin-right: 30px;
 `;
 
 export const UserLogo = styled.div`

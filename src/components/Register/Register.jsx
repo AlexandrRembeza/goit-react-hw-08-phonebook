@@ -1,14 +1,19 @@
-import { Label, Text, RegisterButton, Thumb, Form, Input, FormTitle } from './Register.styled';
+import { Label, Text, RegisterBtn, Thumb, Form, Input, FormTitle } from './Register.styled';
 import { FormError } from 'components/ContactsPage/FormError';
 import { ErrorElem } from 'components/ContactsPage/FormError/FormError.styled';
 import { Box } from 'components/Box';
-import { register } from 'redux/operations';
+import { register } from 'redux/auth/authOperations';
+import { toastOptions } from 'utils/toastOptions';
+import { selectIsLoading } from 'redux/auth/authSelectors';
 
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { ContactsSpinner } from 'components/ContactsPage/ContactsSpinner';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -24,20 +29,22 @@ const schema = Yup.object().shape({
     )
     .required('Это поле обязательное'),
   password: Yup.string()
-    .matches(/[0-9]{7}/, 'Пароль должен содержать минимум 7 символов, и они должны быть числами')
+    .matches(/[0-9]{5}/, 'Пароль должен содержать минимум 5 цифр')
+    .matches(/[a-zA-Zа-яА-Я]{3}/, 'Пароль должен содержать минимум 3 буквы')
     .required('Это поле обязательное'),
 });
 
 export function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [unvalidPassword, setUnvalidPassword] = useState(false);
+  const isLoading = useSelector(selectIsLoading);
 
   const initialValues = {
     name: '',
     email: '',
     password: '',
   };
-
-  const [unvalidPassword, setUnvalidPassword] = useState(false);
 
   const handleSubmit = async (values, { resetForm }) => {
     const password = values.password.trim();
@@ -48,9 +55,14 @@ export function Register() {
       email: values.email.trim(),
       password: values.password.trim(),
     };
-    resetForm();
-    const res = await dispatch(register(formValues));
-    console.log(res);
+
+    const { error } = await dispatch(register(formValues));
+    if (!error) {
+      resetForm();
+      toast.success(`You have successfully registered`, toastOptions);
+      return navigate('/', { replace: true });
+    }
+    toast.error(`An error has occurred, please check the information you entered.`, toastOptions);
   };
 
   const resetErrors = setErrors => {
@@ -91,16 +103,22 @@ export function Register() {
             </Label>
 
             <Label>
-              <Text>Password {'(Only numbers)'}</Text>
+              <Text>Password</Text>
               <Thumb>
-                <Input type="password" name="password" placeholder="12345" />
+                <Input type="password" name="password" placeholder="12345abcd" />
                 {errors.password && touched.password ? <FormError name="password" /> : null}
                 {errors.password && touched.password && resetErrors(setErrors)}
                 {unvalidPassword && <ErrorElem>Пароль должен быть без пробелов</ErrorElem>}
               </Thumb>
             </Label>
 
-            <RegisterButton type="submit">Register</RegisterButton>
+            {!isLoading ? (
+              <RegisterBtn type="submit">Register</RegisterBtn>
+            ) : (
+              <Box mt="20px">
+                <ContactsSpinner size={'50'} />
+              </Box>
+            )}
           </Form>
         )}
       </Formik>

@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
+export const AppBarWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+`;
+
 export const StyledLink = styled(NavLink)`
   display: inline-block;
   font-size: 25px;
@@ -10,10 +16,6 @@ export const StyledLink = styled(NavLink)`
   color: rgb(16, 16, 144);
   text-decoration: none;
   transition: background-color 200ms ease-in-out;
-
-  &:last-of-type {
-    margin-left: 30px;
-  }
 
   &:not(.acive):hover,
   &:not(.acive):focus {

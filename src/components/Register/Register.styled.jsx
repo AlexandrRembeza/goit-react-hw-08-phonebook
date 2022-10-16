@@ -55,7 +55,7 @@ export const Text = styled.span`
   margin-bottom: 10px;
 `;
 
-export const RegisterButton = styled.button`
+export const RegisterBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

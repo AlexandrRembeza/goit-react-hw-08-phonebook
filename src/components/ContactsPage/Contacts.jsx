@@ -1,11 +1,10 @@
-import { changeFilter } from 'redux/filterSlice';
+import { changeFilter } from 'redux/filter/filterSlice';
 import {
   useAddContactMutation,
   useDeleteContactMutation,
   useGetContactsQuery,
-} from 'redux/contactsSlice';
-import { selectFilter } from 'redux/selectors';
-
+} from 'redux/contacts/contactsSlice';
+import { selectFilter } from 'redux/filter/filterSelectors';
 import { toastOptions } from 'utils/toastOptions';
 import { getFilteredContacts } from 'utils/getFilteredContacts';
 
@@ -26,8 +25,7 @@ import { ContactsSpinner } from 'components/ContactsPage/ContactsSpinner';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export function Contacts() {
   const [deletedContactId, setDeletedContactId] = useState(null);
@@ -107,7 +105,6 @@ export function Contacts() {
           )}
         </List>
       )}
-      <ToastContainer />
     </Wrapper>
   );
 }
