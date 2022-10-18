@@ -48,7 +48,12 @@ export function Register() {
 
   const handleSubmit = async (values, { resetForm }) => {
     const password = values.password.trim();
-    if (password.includes(' ')) return setUnvalidPassword(true);
+    if (password.includes(' ')) {
+      setUnvalidPassword(true);
+      return setTimeout(() => {
+        setUnvalidPassword(false);
+      }, 3000);
+    }
 
     const formValues = {
       name: values.name.trim(),

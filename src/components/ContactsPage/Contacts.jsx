@@ -3,7 +3,7 @@ import {
   useAddContactMutation,
   useDeleteContactMutation,
   useGetContactsQuery,
-} from 'redux/contacts/contactsSlice';
+} from 'redux/contacts/contactsAPI';
 import { selectFilter } from 'redux/filter/filterSelectors';
 import { toastOptions } from 'utils/toastOptions';
 import { getFilteredContacts } from 'utils/getFilteredContacts';

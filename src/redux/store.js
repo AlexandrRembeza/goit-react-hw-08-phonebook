@@ -1,4 +1,4 @@
-import { contactsApi } from './contacts/contactsSlice';
+import { contactsApi } from './contacts/contactsAPI';
 import { filterReducer } from './filter/filterSlice';
 import { authReducer } from './auth/authSlice';
 
