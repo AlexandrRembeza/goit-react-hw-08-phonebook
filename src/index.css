@@ -25,9 +25,17 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./images/Icon\ Grid.svg');
+
+  animation: scroll 200s linear infinite;
+  background-image: url('./images/backgroundIcon.svg');
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@keyframes scroll {
+  100% {
+    background-position: 0px -3000px;
+  }
 }
