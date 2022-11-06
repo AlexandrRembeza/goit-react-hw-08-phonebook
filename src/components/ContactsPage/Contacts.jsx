@@ -1,4 +1,3 @@
-import { changeFilter } from 'redux/filter/filterSlice';
 import {
   useAddContactMutation,
   useDeleteContactMutation,
@@ -24,13 +23,12 @@ import { ContactsSpinner } from 'components/ContactsPage/ContactsSpinner';
 
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 export function Contacts() {
   const [deletedContactId, setDeletedContactId] = useState(null);
   const filter = useSelector(selectFilter);
-  const dispatch = useDispatch();
 
   const { data: contacts, isLoading } = useGetContactsQuery({ refetchOnMountOrArgChange: true });
   const [addContact, { isLoading: addContactLoading }] = useAddContactMutation();
@@ -63,10 +61,6 @@ export function Contacts() {
     return setDeletedContactId(null);
   };
 
-  const handleFilter = e => {
-    dispatch(changeFilter({ filter: e.target.value.toLowerCase().trim() }));
-  };
-
   const filteredContacts = getFilteredContacts(contacts, filter);
   const isLoadingContacts = isLoading || addContactLoading || deleteContactLoading;
   const isShowingError = !isLoading && filteredContacts && filteredContacts.length === 0;
@@ -77,7 +71,7 @@ export function Contacts() {
         <Header>Phonebook</Header>
         <ContactForm addContact={addNewContact} isLoading={isLoadingContacts} />
         <Subtitle>Find Contact</Subtitle>
-        <Filter handleFilter={handleFilter} />
+        <Filter />
       </Phonebook>
 
       {isShowingError && !addContactLoading && <ErrorMessage>No Contacts</ErrorMessage>}
@@ -112,10 +106,6 @@ export function Contacts() {
 ContactForm.propTypes = {
   addContact: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-};
-
-Filter.propTypes = {
-  handleFilter: PropTypes.func.isRequired,
 };
 
 ContactList.propTypes = {
