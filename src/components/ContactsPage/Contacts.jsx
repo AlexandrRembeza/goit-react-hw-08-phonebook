@@ -15,6 +15,7 @@ import {
   List,
   ErrorMessage,
   Title,
+  Wrap,
 } from 'components/ContactsPage/Contacts.styled';
 import { ContactForm } from 'components/ContactsPage/ContactForm';
 import { Filter } from 'components/ContactsPage/Filter';
@@ -77,27 +78,28 @@ export function Contacts() {
       {isShowingError && !addContactLoading && <ErrorMessage>No Contacts</ErrorMessage>}
 
       {isShowingError && addContactLoading && (
-        <List>
+        <Wrap>
           <Title>Contacts</Title>
           <ContactsSpinner size={'65'} />
-        </List>
+        </Wrap>
       )}
 
       {!isShowingError && (
-        <List>
+        <Wrap>
           <Title>Contacts</Title>
           {(addContactLoading || isLoading) && <ContactsSpinner size={isLoading ? '100' : '65'} />}
-
-          {contacts && (
-            <ContactList
-              contacts={filteredContacts}
-              deleteContact={removeContact}
-              deletedContactId={deletedContactId}
-              isDeleteContactLoading={deleteContactLoading}
-              isLoading={isLoadingContacts}
-            />
-          )}
-        </List>
+          <List>
+            {contacts && (
+              <ContactList
+                contacts={filteredContacts}
+                deleteContact={removeContact}
+                deletedContactId={deletedContactId}
+                isDeleteContactLoading={deleteContactLoading}
+                isLoading={isLoadingContacts}
+              />
+            )}
+          </List>
+        </Wrap>
       )}
     </Wrapper>
   );
