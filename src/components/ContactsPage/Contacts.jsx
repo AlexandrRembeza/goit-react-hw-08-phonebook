@@ -38,7 +38,7 @@ export function Contacts() {
   const [deleteContact, { isLoading: deleteContactLoading }] = useDeleteContactMutation();
 
   const addNewContact = async values => {
-    for (const contact of filteredContacts) {
+    for (const contact of contacts) {
       if (contact.name.toLowerCase() === values.name.toLowerCase()) {
         return toast.error(`${contact.name} is already in contacts`, toastOptions);
       }
