@@ -3,10 +3,9 @@ import { Item } from './ContactList.styled';
 import { Contact } from 'components/ContactsPage/Contact';
 
 export const ContactList = ({ contacts, ...props }) => {
-  const reverseContacts = [...contacts].reverse();
   return (
     <>
-      {reverseContacts.map(({ name, id, number }) => (
+      {contacts.map(({ name, id, number }) => (
         <Item key={id}>
           <Contact id={id} name={name} number={number} props={props} />
         </Item>

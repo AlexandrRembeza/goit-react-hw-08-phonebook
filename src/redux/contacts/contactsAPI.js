@@ -17,6 +17,9 @@ export const contactsApi = createApi({
   endpoints: ({ query, mutation }) => ({
     getContacts: query({
       query: () => `/contacts`,
+      transformResponse(response) {
+        return response.reverse();
+      },
       providesTags: ['Contacts'],
     }),
     addContact: mutation({

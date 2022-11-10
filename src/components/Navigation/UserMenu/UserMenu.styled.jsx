@@ -38,7 +38,8 @@ export const LogOutBtn = styled.button`
   padding: 5px 25px;
 
   color: #ffffff;
-  background-color: #ef9292;
+  background-color: ${props => (!props.isLoading ? '#ef9292' : '#ca1010')};
+  /* background-color: #ef9292; */
   border: none;
   border-radius: 40px;
   cursor: pointer;

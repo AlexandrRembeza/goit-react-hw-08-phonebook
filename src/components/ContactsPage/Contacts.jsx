@@ -31,12 +31,14 @@ export function Contacts() {
   const [deletedContactId, setDeletedContactId] = useState(null);
   const filter = useSelector(selectFilter);
 
-  const { data: contacts, isLoading } = useGetContactsQuery({ refetchOnMountOrArgChange: true });
+  const { data: contacts, isLoading } = useGetContactsQuery({
+    refetchOnMountOrArgChange: true,
+  });
   const [addContact, { isLoading: addContactLoading }] = useAddContactMutation();
   const [deleteContact, { isLoading: deleteContactLoading }] = useDeleteContactMutation();
 
   const addNewContact = async values => {
-    for (const contact of contacts) {
+    for (const contact of filteredContacts) {
       if (contact.name.toLowerCase() === values.name.toLowerCase()) {
         return toast.error(`${contact.name} is already in contacts`, toastOptions);
       }
